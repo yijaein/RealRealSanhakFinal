@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context="com.google.firebase.quickstart.database.NewPostActivity">
 
+    <!--
+    2017_09_28 이재인 로고 이미지
+
+    -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:src="@drawable/parbin"
+        android:id="@+id/logoImg"/>
+
+
+
+
+
+
     <EditText
         android:id="@+id/field_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/logoImg"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -19,7 +35,7 @@
     <EditText
         android:id="@+id/field_body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@+id/field_title"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="16dp"
@@ -36,6 +52,17 @@
             android:id="@+id/gpsBtn"
             android:text="location"
             android:layout_below="@+id/field_body"/>
+
+        <Button
+            android:id="@+id/imgBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@+id/field_body"
+            android:gravity="center"
+            android:layout_marginLeft="100dp"
+            android:layout_weight="1"
+            android:text="photo" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_submit_post"

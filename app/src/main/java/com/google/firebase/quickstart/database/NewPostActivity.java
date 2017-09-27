@@ -33,6 +33,7 @@ public class NewPostActivity extends BaseActivity {
     private EditText mBodyField;
     private Button mLocationBtn;
     private FloatingActionButton mSubmitButton;
+    private Button mImageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,18 @@ public class NewPostActivity extends BaseActivity {
         mTitleField = (EditText) findViewById(R.id.field_title);
         mBodyField = (EditText) findViewById(R.id.field_body);
         mLocationBtn= (Button)findViewById(R.id.gpsBtn);
+        mImageBtn =(Button)findViewById(R.id.imgBtn);
         mSubmitButton = (FloatingActionButton) findViewById(R.id.fab_submit_post);
         /*
-        2017_09_28 이재인 위치 등록 버튼
+        2017_09_28 이재인 위치 등록 버튼 ,이미지 버튼
          */
+
+        mLocationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         mLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
