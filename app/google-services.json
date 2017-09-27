@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "772796330852",
+    "firebase_url": "https://realsanhakfinal.firebaseio.com",
+    "project_id": "realsanhakfinal",
+    "storage_bucket": "realsanhakfinal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772796330852:android:193707f3bd2df2e4",
+        "android_client_info": {
+          "package_name": "com.google.firebase.quickstart.database"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772796330852-bj9kjskq0pqqkeg4qkiki8c8spgutgpf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.quickstart.database",
+            "certificate_hash": "a4e663db65b7cba4e820faff0a3e85b1687ffd6e"
+          }
+        },
+        {
+          "client_id": "772796330852-ade0kp3sjknofhq7k4og38u2kp048rn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOCKWvvHDUQcupg0zKv1Rq9VNSozXxke8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772796330852-ade0kp3sjknofhq7k4og38u2kp048rn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
