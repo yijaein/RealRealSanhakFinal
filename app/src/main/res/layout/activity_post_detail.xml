@@ -26,14 +26,31 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp" />
 
+
+    <fragment
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/mapfrag2"
+        android:layout_below="@+id/post_text_layout"
+        >
+    </fragment>
+
+
+
+
     <LinearLayout
         android:id="@+id/comment_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/post_text_layout"
+        android:layout_below="@+id/mapfrag2"
         android:layout_marginTop="20dp"
         android:weightSum="1.0">
+
+
+
+
 
         <EditText
             android:id="@+id/field_comment_text"

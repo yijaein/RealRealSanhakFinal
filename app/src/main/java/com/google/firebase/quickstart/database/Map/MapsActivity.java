@@ -1,6 +1,7 @@
 package com.google.firebase.quickstart.database.Map;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.util.Log;
 
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,6 +30,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.quickstart.database.NewPostActivity;
 import com.google.firebase.quickstart.database.R;
 
 import java.io.IOException;
@@ -51,6 +54,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static double lat;
     private GoogleMap mMap;
     String TAG = getClass().getSimpleName();
+    private static final int LAUNCHED_ACTIVITY =1;
+
+
+
 
 
 
@@ -64,6 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        enableMyLocation();//내 위치 찾기s
         //주소 찾기 버튼
         searchBtn = (Button)findViewById(R.id.searchBtn);
 
@@ -112,6 +120,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                  */
                lat = latLng.latitude;
                lon= latLng.longitude;
+
+               System.out.println(lat);
 
 
 
@@ -197,44 +207,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Toast.makeText(MapsActivity.this,"marker clicked",Toast.LENGTH_LONG).show();
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("위치지정")
-                            .setMessage("위도:"+lat+"\n"+"경도"+lon+"\n"+"위치를 지정하시겠습니까?")
-                            .setCancelable(false)
-                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    //확인 버튼 누를 시 이벤트 처리
-                                    //확인 눌렀을 때 lat , lon 값을 sharedpreference에 저장해서 ThirdFragment로 보내서 같이 DB에 저장
-                                    Toast.makeText(MapsActivity.this,"좌표값"+lon,Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(MapsActivity.this,"좌표값"+lat,Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder1 = builder.setTitle("위치지정")
+                        .setMessage("위도:" + lat + "\n" + "경도" + lon + "\n" + "위치를 지정하시겠습니까?")
+                        .setCancelable(false)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //확인 버튼 누를 시 이벤트 처리
+                                //확인 눌렀을 때 lat , lon 값을 sharedpreference에 저장해서 ThirdFragment로 보내서 같이 DB에 저장
+                                Toast.makeText(MapsActivity.this, "좌표값" + lat, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MapsActivity.this, "좌표값" + lon, Toast.LENGTH_SHORT).show();
+
                                     /*
                                     2017_09_19 이재인 DB에 들어갈때 String 으로 변환되서 뒤에 값이 조금 짤린다 -> 수정할 것
                                     2017_09_19 이재인 위치 등록 시 다시 글 쓰는 페이지로 넘어가는 것 해야함
 
                                     저장
                                      */
-
-                                    SharedPreferences test = getSharedPreferences("gpsInfo",MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = test.edit();
-                                    editor.putFloat("lon",(float)lon);
-                                    editor.putFloat("lat",(float)lat);
-                                    editor.commit();
-
-                                    Log.d(TAG,"longitude1:"+lon);
-                                    Log.d(TAG,"latitude1:"+lat);
-
-                                    Toast.makeText(MapsActivity.this,"위치등록이 완료되었습니다",Toast.LENGTH_SHORT).show();
+                                SharedPreferences pref = getSharedPreferences("GPS",Activity.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putFloat("lon",(float)lon);
+                                editor.putFloat("lat",(float)lat);
+                                editor.commit();
 
 
 
-                                }
-                            }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int i) {
-                            //취소 버튼 클릭 시  설정
-                            dialog.cancel();
-                        }
-                    });
+
+                            }
+                        }).setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                //취소 버튼 클릭 시  설정
+                                dialog.cancel();
+                            }
+                        });
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
@@ -266,4 +272,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mPermissionDenied = false;
         }
     }
+
+
+
 }

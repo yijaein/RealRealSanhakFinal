@@ -1,7 +1,9 @@
 package com.google.firebase.quickstart.database;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,8 +35,10 @@ import com.google.firebase.quickstart.database.models.Post;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostDetailActivity extends BaseActivity implements View.OnClickListener {
-
+public class PostDetailActivity extends BaseActivity implements View.OnClickListener,OnMapReadyCallback {
+/*
+    2017_09_28 이재인 맵뷰 추가
+ */
     private static final String TAG = "PostDetailActivity";
 
     public static final String EXTRA_POST_KEY = "post_key";
@@ -44,6 +55,11 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private EditText mCommentField;
     private Button mCommentButton;
     private RecyclerView mCommentsRecycler;
+    private MapView mapView = null;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +89,15 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mCommentButton.setOnClickListener(this);
         mCommentsRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-    }
+
+        SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapfrag2);
+        mapFragment.getMapAsync(this);
+
+
+
+    }//oncreate end
+
+
 
     @Override
     public void onStart() {
@@ -112,6 +136,22 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         // Listen for comments
         mAdapter = new CommentAdapter(this, mCommentsReference);
         mCommentsRecycler.setAdapter(mAdapter);
+
+
+    }
+/*
+    2017_09_28 이재인 구글맵 프래그먼트 추가
+ */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+
     }
 
     @Override
@@ -124,7 +164,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         }
 
         // Clean up comments listener
-        mAdapter.cleanupListener();
+
     }
 
     @Override
@@ -305,4 +345,5 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         }
 
     }
+
 }

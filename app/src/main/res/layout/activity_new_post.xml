@@ -46,23 +46,48 @@
         android:maxLines="10"
         android:scrollHorizontally="false" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/field_body"
+        android:id="@+id/Linear"
+        android:layout_height="wrap_content">
+
         <Button
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:id="@+id/gpsBtn"
             android:text="location"
-            android:layout_below="@+id/field_body"/>
+            />
 
         <Button
             android:id="@+id/imgBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_below="@+id/field_body"
-            android:gravity="center"
-            android:layout_marginLeft="100dp"
             android:layout_weight="1"
             android:text="photo" />
+
+
+    </LinearLayout>
+    <fragment
+        android:layout_width="190dp"
+        android:layout_height="200dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/mapfrag1"
+        android:layout_below="@+id/Linear"
+        >
+
+    </fragment>
+
+    <ImageView
+        android:layout_width="190dp"
+        android:layout_height="200dp"
+        android:id="@+id/lostThingImgView"
+        android:layout_below="@+id/Linear"
+        android:layout_alignParentRight="true"
+        />
+
+
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_submit_post"

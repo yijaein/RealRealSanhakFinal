@@ -48,8 +48,8 @@ public class  MainActivity extends BaseActivity {
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             private final Fragment[] mFragments = new Fragment[] {
-                    new RecentPostsFragment(),
                     new MyPostsFragment(),
+                    new RecentPostsFragment(),
                     new MyTopPostsFragment(),
             };
             private final String[] mFragmentNames = new String[] {
@@ -103,7 +103,9 @@ public class  MainActivity extends BaseActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-
+/*
+    2017_09_28 이재인 뒤로가기
+ */
     @Override
     public void onBackPressed() {
 
