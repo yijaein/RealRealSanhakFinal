@@ -138,7 +138,7 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
         stLon =Float.toString(lon);
         stLat =Float.toString(lat);
 
-        
+
         /*
         2017_09_28 이재인 구글맵 프래그먼트 추가
          */

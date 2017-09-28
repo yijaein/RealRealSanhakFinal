@@ -39,6 +39,7 @@ import java.util.List;
 public class PostDetailActivity extends BaseActivity implements View.OnClickListener,OnMapReadyCallback {
 /*
     2017_09_28 이재인 맵뷰 추가
+    2017_09_28 이재인 맵 프래그먼트 추가 디비에서 직접 좌표값을 불러와야함
  */
     private static final String TAG = "PostDetailActivity";
 
@@ -62,6 +63,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private float lat;
     private String stLon;
     private String stLat;
+
 
 
 
@@ -98,13 +100,6 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapfrag2);
         mapFragment.getMapAsync(this);
-
-        SharedPreferences pref = getSharedPreferences("GPS", Activity.MODE_PRIVATE);
-        lon = pref.getFloat("lon",0);
-        lat = pref.getFloat("lat",0);
-
-        stLon =Float.toString(lon);
-        stLat =Float.toString(lat);
 
 
 
@@ -157,7 +152,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
  */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng SEOUL = new LatLng(lat, lon);
+        LatLng SEOUL = new LatLng(37.566535, 126.97796919999996);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(SEOUL);
         markerOptions.title("잃어버린 물건");
