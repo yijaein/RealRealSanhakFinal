@@ -61,10 +61,10 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
     private FloatingActionButton mSubmitButton;
     private Button mImageBtn;
     private ImageView mImageView;
-    float lon;
-    float lat;
-    String stLon;
-    String stLat;
+    private float lon;
+    private float lat;
+    private String stLon;
+    private String stLat;
     private  static  final  int GALLERY_INTENT = 2;
     private ProgressDialog mProgressDialog;
     StorageReference filepath;
@@ -120,6 +120,7 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
             @Override
             public void onClick(View v) {
                 submitPost();
+
             }
         });
 
@@ -128,10 +129,7 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
 
 
 
-//
-//        SharedPreferences sp = getSharedPreferences("gpsInfo", MODE_PRIVATE);
-//        lon = sp.getFloat("lon",0);
-//        lat = sp.getFloat("lat",0);
+
 
         SharedPreferences pref = getSharedPreferences("GPS", Activity.MODE_PRIVATE);
         lon = pref.getFloat("lon",0);
@@ -139,17 +137,8 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
 
         stLon =Float.toString(lon);
         stLat =Float.toString(lat);
-//
-//        // 2017_09_19 이재인 hashtable을 String 만 저장하도록 만들어서 String 형으로 변환시켜준다.
-//        stLon =Float.toString(lon);
-//        stLat =Float.toString(lat);
-//
-//
-//        System.out.println(lon);
-//        System.out.println(lat);
-//
 
-
+        
         /*
         2017_09_28 이재인 구글맵 프래그먼트 추가
          */

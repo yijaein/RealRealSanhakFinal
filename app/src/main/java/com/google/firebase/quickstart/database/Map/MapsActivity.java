@@ -228,7 +228,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 SharedPreferences.Editor editor = pref.edit();
                                 editor.putFloat("lon",(float)lon);
                                 editor.putFloat("lat",(float)lat);
-                                editor.commit();
+                                editor.apply();
+
 
 
 

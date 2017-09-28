@@ -1,5 +1,6 @@
 package com.google.firebase.quickstart.database;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -57,6 +58,11 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
     private RecyclerView mCommentsRecycler;
     private MapView mapView = null;
 
+    private float lon;
+    private float lat;
+    private String stLon;
+    private String stLat;
+
 
 
 
@@ -92,6 +98,13 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapfrag2);
         mapFragment.getMapAsync(this);
+
+        SharedPreferences pref = getSharedPreferences("GPS", Activity.MODE_PRIVATE);
+        lon = pref.getFloat("lon",0);
+        lat = pref.getFloat("lat",0);
+
+        stLon =Float.toString(lon);
+        stLat =Float.toString(lat);
 
 
 
@@ -144,6 +157,15 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
  */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        LatLng SEOUL = new LatLng(lat, lon);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(SEOUL);
+        markerOptions.title("잃어버린 물건");
+        markerOptions.snippet("요깅");
+        googleMap.addMarker(markerOptions);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
 
     }
 
