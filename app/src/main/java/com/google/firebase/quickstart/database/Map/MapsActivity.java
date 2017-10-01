@@ -230,6 +230,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 editor.putFloat("lat",(float)lat);
                                 editor.apply();
 
+                                Toast.makeText(MapsActivity.this, "위치등록이 완료되었습니다", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MapsActivity.this,NewPostActivity.class);
+                                startActivity(intent);
+                                finish();
 
 
 

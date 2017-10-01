@@ -11,6 +11,8 @@ import java.util.Map;
 
 /*
     2017_09_28 이재인 좌표값 위도 경도 추가
+    2017_09_30 이재인 이미지 저장경로 추가
+
  */
 public class Post {
 
@@ -21,19 +23,21 @@ public class Post {
     public int starCount = 0;
     public String lon;
     public String lat;
+    public String photoUri;
     public Map<String, Boolean> stars = new HashMap<>();
 
     public Post() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
-    public Post(String uid, String author, String title, String body, String lon, String lat) {
+    public Post(String uid, String author, String title, String body, String lon, String lat ,String photoUri) {
         this.uid = uid;
         this.author = author;
         this.title = title;
         this.body = body;
         this.lon=lon;
         this.lat= lat;
+        this.photoUri = photoUri;
     }
 
     // [START post_to_map]
@@ -48,6 +52,7 @@ public class Post {
         result.put("stars", stars);
         result.put("lon",lon);
         result.put("lat",lat);
+        result.put("photoUri",photoUri);
 
         return result;
     }

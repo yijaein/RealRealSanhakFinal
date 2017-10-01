@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:772796330852:android:193707f3bd2df2e4",
         "android_client_info": {
-          "package_name": "com.google.firebase.quickstart.database"
+          "package_name": "com.example.jan.realsanhakfinal"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "772796330852-bj9kjskq0pqqkeg4qkiki8c8spgutgpf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.google.firebase.quickstart.database",
+            "package_name": "com.example.jan.realsanhakfinal",
             "certificate_hash": "a4e663db65b7cba4e820faff0a3e85b1687ffd6e"
           }
         },
@@ -64,6 +64,50 @@
           "android_info": {
             "package_name": "com.google.firebase.quickstart.firebasestorage",
             "certificate_hash": "a4e663db65b7cba4e820faff0a3e85b1687ffd6e"
+          }
+        },
+        {
+          "client_id": "772796330852-ade0kp3sjknofhq7k4og38u2kp048rn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOCKWvvHDUQcupg0zKv1Rq9VNSozXxke8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772796330852-ade0kp3sjknofhq7k4og38u2kp048rn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772796330852:android:fcfef757a832647b",
+        "android_client_info": {
+          "package_name": "com.google.firebase.quickstart.database"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772796330852-7t5ogvnue0gatp74eilr1vf4jr75lg8r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.google.firebase.quickstart.database",
+            "certificate_hash": "a0df8f716bd75150ed29139c20be8cab028fec4b"
           }
         },
         {
