@@ -82,7 +82,7 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
     private StorageReference mStorageRef;
     String StringUid;
     FirebaseUser user;
-    String downloadUri;//이미지 저장경로
+    private Uri downloadUri;//이미지 저장경로
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
 
 
@@ -264,7 +264,7 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
     }
 
     // [START write_fan_out]
-    private void writeNewPost(String userId, String username, String title, String body,String lat,String lon ,String photoUri) {
+    private void writeNewPost(String userId, String username, String title, String body,String lat,String lon ,Uri photoUri) {
         // Create new post at /user-posts/$userid/$postid and at
         // /posts/$postid simultaneously
         String key = mDatabase.child("posts").push().getKey();
@@ -351,7 +351,8 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
                         mImageView.setImageBitmap(bitmap);//이미지뷰에 이미지 저장
 
                         @SuppressWarnings("VisibleForTests")  Uri downloadUri = taskSnapshot.getDownloadUrl();
-                        Log.d(TAG,"photouri: "+downloadUri);
+
+                        Log.d("Tag1","photoUri"+downloadUri);
                     }catch (IOException e ){
                         e.printStackTrace();
                     }
@@ -364,17 +365,17 @@ public class NewPostActivity extends BaseActivity implements OnMapReadyCallback 
                 }
             });
 
-            filepath.child("users").child(StringUid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    downloadUri =filepath.getPath();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-
-                }
-            });
+//            filepath.child("users").child(StringUid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                @Override
+//                public void onSuccess(Uri uri) {
+//                   downloadUri =filepath.getPath();
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//
+//                }
+//            });
         }
     }
 }

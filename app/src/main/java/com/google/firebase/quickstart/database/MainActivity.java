@@ -51,6 +51,7 @@ public class  MainActivity extends BaseActivity {
                     new MyPostsFragment(),
                     new RecentPostsFragment(),
                     new MyTopPostsFragment(),
+
             };
             private final String[] mFragmentNames = new String[] {
                     getString(R.string.heading_recent),

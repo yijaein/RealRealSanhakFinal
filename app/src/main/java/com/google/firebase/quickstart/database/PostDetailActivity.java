@@ -3,7 +3,9 @@ package com.google.firebase.quickstart.database;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +26,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +39,7 @@ import com.google.firebase.quickstart.database.models.Comment;
 import com.google.firebase.quickstart.database.models.Post;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -65,7 +70,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     /*
     2017_09_29 이재인 일단 디비에서 좌표값을 받아와 PostDetailActivity에 뿌려주기 위해 쓰이는 변수
-
+    2017_10_02 이재인 Post.class로 downloadUri를 받아온다.
      */
     private String mlon;
     private String mlat;
@@ -73,9 +78,13 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
     public static double dLat =0;
     public static double dLon =0;
-    private ImageView mPostDetailImgView;
+
 
     private StorageReference mStorageRef;
+    /*
+
+     */
+    Uri downloadUri;//이미지 저장경로
 
 
 
@@ -108,9 +117,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         mCommentField = (EditText) findViewById(R.id.field_comment_text);
         mCommentButton = (Button) findViewById(R.id.button_post_comment);
         mCommentsRecycler = (RecyclerView) findViewById(R.id.recycler_comments);
-        mPostDetailImgView =(ImageView)findViewById(R.id.postdetailImgView);
 
-        mPostDetailImgView.setImageResource(R.drawable.parbin);
 
 
 
@@ -155,6 +162,7 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
                 mlat=post.lat;
                 mlon=post.lon;
 
+
                 /*
                 2017_09_28 이재인 글을 쓸 때 DB에 저장은 완료했는데 불러와서 지도에 뿌려줘야함
                  */
@@ -164,8 +172,14 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
 
                 dLat = Double.parseDouble(mlat);
                 dLon = Double.parseDouble(mlon);
+
+
+
                 Log.d("Tag2","DB Lat:"+dLat);
                 Log.d("Tag2","DB Lon:"+dLon);
+
+                downloadUri = post.photoUri;
+                Log.d("Tag2","photoUri:"+downloadUri);
 
             }
 
@@ -188,6 +202,10 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         // Listen for comments
         mAdapter = new CommentAdapter(this, mCommentsReference);
         mCommentsRecycler.setAdapter(mAdapter);
+
+        /*
+        2017_10_02 이재인 시작시 사진을 받아옴
+         */
 
 
 
@@ -418,6 +436,9 @@ public class PostDetailActivity extends BaseActivity implements View.OnClickList
         }
 
     }
+/*
+    2017_10_02 이재인 일단 downloadUri값을 NewPostActivity에서 받아와서 picasso로 출력한다.
+ */
 
 
 }
